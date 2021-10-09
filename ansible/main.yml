@@ -1,0 +1,21 @@
+- hosts: ansmachine
+  tasks:
+  - name: current Dir
+    command: pwd
+  - name: current user
+    command: whoami
+  - name: remove directory
+    file:
+     path: /home/ansuser/artifacts
+     state: absent
+  - name: Create working Dir
+    file:
+     path: "/home/ansuser/artifacts"
+     state: directory
+  - name: Download Artifact
+    shell:
+      cmd: "curl -X GET -u admin:Mahi@132 -O http://localhost:5040/artifactory/libs-snapshot-local/Capstone-{{var}}.war"
+      chdir: /home/ansuser/artifacts
+  - name: copy
+    shell:
+      cmd: sudo cp /home/ansuser/artifacts/Capstone-{{var}}.war {{playbook_dir}}/../docker

@@ -18,7 +18,7 @@ pipeline{
         }
         stage('Publish Artifact'){
             steps{
-                sh 'curl -u admin:nexus@123 -X PUT "http://ec2-13-233-193-48.ap-south-1.compute.amazonaws.com:8081/artifactory/libs-snapshot-local/Capstone-${BUILD_NUMBER}.war" -T target/*.war'
+                sh 'curl -u admin:nexus@123 -X PUT "http://13.233.193.48:8081/test/Capstone-${BUILD_NUMBER}.war" -T target/*.war'
             }
         }
         stage('download Artifact'){

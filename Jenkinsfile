@@ -18,7 +18,8 @@ pipeline{
         }
         stage('Publish Artifact'){
             steps{
-                sh 'curl -u admin:nexus@123 -X PUT "http://13.233.193.48:8081/test/Capstone-${BUILD_NUMBER}.war" -T target/*.war'
+                sh 'curl -u  -X PUT "a/test/Capstone-${BUILD_NUMBER}.war" -T target/*.war'
+Sh 'echo '
             }
         }
         stage('download Artifact'){

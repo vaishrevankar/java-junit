@@ -20,7 +20,7 @@ pipeline{
         stage('Publish Artifact'){
 		steps{
 	          //nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ILP_Fancystore.war']], mavenCoordinate: [artifactId: 'ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${BUILD_NUMBER}"]]]
-		  sh 'curl -u admin:nexus@123 -X PUT "http://ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo/Capstone-${BUILD_NUMBER}.war" -T target/ILP_Fancystore.war'
+		  sh 'curl -u admin:nexus@123 -X PUT "http://ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo" -T target/ILP_Fancystore.war'
 
         }
 	}

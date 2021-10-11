@@ -16,12 +16,11 @@ pipeline{
                 }
             }
         }
-	withCredentials([usernamePassword(credentialsId: 'nexus-creds', passwordVariable: 'pass', usernameVariable: 'user')])
-        {
+
         stage('Publish Artifact'){
-	          nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/*.war']], mavenCoordinate: [artifactId: ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${BUILD_NUMBER}"]]]
+	          nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/*.war']], mavenCoordinate: [artifactId: ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${appVersion}"]]]
         }
-        }
+    
         stage('download Artifact'){
             steps{
                 sh 'ansible-playbook -v -i ansible/inventory -e "var=${BUILD_NUMBER}" ansible/main.yml'

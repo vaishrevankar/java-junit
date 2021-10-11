@@ -19,7 +19,7 @@ pipeline{
 
         stage('Publish Artifact'){
 		steps{
-	          nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/*.war']], mavenCoordinate: [artifactId: 'ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${BUILD_NUMBER}"]]]
+	          nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ILP_Fancystore.war']], mavenCoordinate: [artifactId: 'ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${BUILD_NUMBER}"]]]
         }
 	}
     

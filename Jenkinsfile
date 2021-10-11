@@ -18,8 +18,11 @@ pipeline{
         }
         stage('Publish Artifact'){
             steps{
-                sh 'curl -u  -X PUT "a/test/Capstone-${BUILD_NUMBER}.war" -T target/*.war'
-Sh 'echo '
+                withCredentials([usernamePassword(credentialsId: 'nexus-creds', passwordVariable: 'pass', usernameVariable: 'user')])
+			{
+			   nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/*.war']], mavenCoordinate: [artifactId: ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${BUILD_NUMBER}"]]]
+
+}
             }
         }
         stage('download Artifact'){

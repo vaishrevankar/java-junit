@@ -18,7 +18,7 @@ pipeline{
         }
 
         stage('Publish Artifact'){
-	          nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/*.war']], mavenCoordinate: [artifactId: ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${appVersion}"]]]
+	          nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/*.war']], mavenCoordinate: [artifactId: ILP', groupId: 'devops.ilp1', packaging: 'war', version: '1.0']]]
         }
     
         stage('download Artifact'){

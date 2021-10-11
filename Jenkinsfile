@@ -22,7 +22,7 @@ pipeline{
 	          //nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/ILP_Fancystore.war']], mavenCoordinate: [artifactId: 'ILP', groupId: 'devops.ilp1', packaging: 'war', version: "${BUILD_NUMBER}"]]]
 		  //sh 'curl -v -u admin:nexus@123 -X PUT "http://ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo" -T target/ILP_Fancystore.war'
                    //sh 'curl -v -u admin:nexus@123 -X PUT "http://ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo/test/test/1/Capstone-${BUILD_NUMBER}.war" -T target/ILP_Fancystore.war'
-	mvn deploy:deploy-file -DgroupId=devops.ilp -DartifactId=ILP -Dversion="${BUILD_NUMBER}" -DgeneratePom=true -Dpackaging=war -DrepositoryId=nexus -Durl="http://admin:nexus@123@ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo/" -Dfile=ILP_Fancystore.war
+	sh 'mvn deploy:deploy-file -DgroupId=devops.ilp -DartifactId=ILP -Dversion="${BUILD_NUMBER}" -DgeneratePom=true -Dpackaging=war -DrepositoryId=nexus -Durl="http://admin:nexus@123@ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo/" -Dfile=ILP_Fancystore.war'
 
 
         }

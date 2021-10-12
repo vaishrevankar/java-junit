@@ -21,7 +21,7 @@ pipeline{
 		withCredentials([usernamePassword(credentialsId: 'nexus-creds', passwordVariable: 'pass', usernameVariable: 'user')]){
 	          sh 'mvn deploy:deploy-file -DgroupId=devops.ilp -DartifactId=ILP -Dversion="${BUILD_NUMBER}" -DgeneratePom=true -Dpackaging=war -DrepositoryId=nexus -Durl="http://${user}:${pass}@3.110.37.51:8081/repository/maven-nexus-repo/" -Dfile=target/ILP_Fancystore.war'
         }
-		}
+	}
 }
         stage('download Artifact'){
             steps{

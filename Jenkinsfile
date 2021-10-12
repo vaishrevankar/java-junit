@@ -23,15 +23,7 @@ pipeline{
         }
 	}
 }
-        stage('download Artifact'){
-            steps{
-                sh 'ansible-playbook -v -i ansible/inventory -e "var=${BUILD_NUMBER}" ansible/main.yml'
-            }
-        }
-        stage('Docker build'){
-            steps{
-                sh 'docker build --build-arg version=${BUILD_NUMBER} -f docker/Dockerfile -t capstone:${BUILD_NUMBER} docker/' 
-            }
-        }
+
+
     }
 }

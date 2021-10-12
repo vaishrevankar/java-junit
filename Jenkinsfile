@@ -16,8 +16,8 @@ pipeline{
                 }
             }
         }
-withCredentials([usernamePassword(credentialsId: 'nexus-creds', passwordVariable: 'pass', usernameVariable: 'user')]){
         stage('Publish Artifact'){
+		withCredentials([usernamePassword(credentialsId: 'nexus-creds', passwordVariable: 'pass', usernameVariable: 'user')]){
 		steps{
 	          sh 'mvn deploy:deploy-file -DgroupId=devops.ilp -DartifactId=ILP -Dversion="${BUILD_NUMBER}" -DgeneratePom=true -Dpackaging=war -DrepositoryId=nexus -Durl="http://${user}:${pass}@ec2-3-110-54-82.ap-south-1.compute.amazonaws.com:8081/repository/maven-nexus-repo/" -Dfile=target/ILP_Fancystore.war'
         }
